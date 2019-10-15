@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 
-import { fetchFacts } from '../actions';
+import { fetchSmurfs } from '../actions';
 
 import Smurf from './Smurf';
 
 const SmurfList = props => {
   useEffect(() => {
-    props.fetchFacts();
+    props.fetchSmurfs();
   }, []);
 
   if (props.isFetching) {
     // usually a spinner (react-loader-spinner)
     return <Loader
-    type="Puff"
+    type="Circles"
     color="#00BFFF"
     height={100}
     width={100}
@@ -44,5 +44,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { fetchFacts }
+  { fetchSmurfs }
 )(SmurfList);
