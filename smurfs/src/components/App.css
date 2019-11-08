@@ -26,3 +26,13 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.cards{
+  background-color: #222;
+  width:auto;
+  margin: 10px;
+  display:flex ;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+
+}

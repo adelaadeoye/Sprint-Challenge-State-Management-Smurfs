@@ -1,4 +1,4 @@
-import { START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE,ADD_SMURF } from '../actions';
+import { START_FETCHING, FETCH_SUCCESS, FETCH_FAILURE,ADD_SMURF,DELETE_SMURF,EDIT_SMURF } from '../actions';
 
 const initialState = {
   SmurfList: [],
@@ -34,6 +34,20 @@ const reducer = (state = initialState, action) => {
             error: action.payload,
             isFetching: false
           };
+          case DELETE_SMURF:
+            return {
+              ...state,
+              SmurfList:action.payload,
+              error: action.payload,
+              isFetching: false
+            };
+            case EDIT_SMURF:
+              return {
+                ...state,
+                SmurfList:action.payload,
+                error: action.payload,
+                isFetching: false
+              };
     default:
       return state;
   }
