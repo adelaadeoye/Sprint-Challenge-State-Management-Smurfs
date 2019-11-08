@@ -3,12 +3,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Button from "@material-ui/core/Button";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme =>({
   card: {
+    display:"flex",
+    
     width:200,
     margin:'5px auto'
   },
+  button: {
+    display:"block",
+    margin: theme.spacing(0.5)},
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -20,12 +26,12 @@ const useStyles = makeStyles({
   pos: {
     marginBottom: 12,
   },
-});
+}));
  const  Smurf=props=> {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
+    <div className="cards">
     <Card className={classes.card}>
       <CardContent>
         
@@ -40,8 +46,25 @@ const useStyles = makeStyles({
        height: {props.smurf.height}
 
         </Typography>
+        <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        
+      >
+        Edit
+      </Button><Button
+        variant="contained"
+        color="secondary"
+        className={classes.button}
+        
+      >
+        
+        Delete
+      </Button>
       </CardContent>
     </Card>
+    </div>
   );
 }
 export default Smurf;

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect,useDispatch } from 'react-redux';
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
 import Loader from 'react-loader-spinner'
 
@@ -7,10 +7,11 @@ import { fetchSmurfs } from '../actions';
 
 import Smurf from './Smurf';
 
-const SmurfList = props => {
+const SmurfsList = props => {
+  const dispatch=useDispatch();
   useEffect(() => {
-    props.fetchSmurfs();
-  }, []);
+    dispatch(fetchSmurfs());
+  }, [dispatch]);
 
   if (props.isFetching) {
     // usually a spinner (react-loader-spinner)
@@ -26,10 +27,10 @@ const SmurfList = props => {
 
   return (
     <div>
-      {props.error && <p>{props.error}</p>}
-      {props.SmurfList.map(smurf => (
+     
+      {props.SmurfList.map(smurf => 
         <Smurf key={smurf.id} smurf={smurf} />
-      ))}
+      )}
     </div>
   );
 };
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   { fetchSmurfs }
-)(SmurfList);
+)(SmurfsList);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 
 import { addSmurf } from "../actions";
 
@@ -38,19 +38,21 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+
 const AddSmurf = props => {
   const classes = useStyles();
-  const [state, setState] = useState({ name: "", age: "", height: "" });
-  
+  const [inputs, setInputs] = useState({ name: "", age: "", height: "" });
+  const dispatch=useDispatch();
   const onSubmit = event => {
     event.preventDefault();
-    setState({ name: "", age: "", height: "" });
-  console.log(state)
+    setInputs({ name: "", age: "", height: "" });
+    dispatch(addSmurf(inputs))
+  console.log(inputs)
 };
 
 
   const valueChange = event => {
-    setState({ ...state, [event.target.name]: event.target.value });
+    setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
   return (
     <form className={classes.root} noValidate onSubmit={onSubmit} >
@@ -59,7 +61,7 @@ const AddSmurf = props => {
         id="custom-css-standard-input"
         label="Name"
         name="name"
-        value={state.name}
+        value={inputs.name}
         onChange={valueChange}
       />
       <CssTextField
@@ -68,7 +70,8 @@ const AddSmurf = props => {
         label="Age"
         value=""
         name="age"
-        value={state.age}
+        type="number"
+        value={inputs.age}
         onChange={valueChange}
       />
       <CssTextField
@@ -76,7 +79,7 @@ const AddSmurf = props => {
         id="custom-css-standard-input"
         label="Height"
         name="height"
-        value={state.height}
+        value={inputs.height}
         onChange={valueChange}
       />
       <Button
@@ -92,9 +95,9 @@ const AddSmurf = props => {
 };
 const mapStateToProps = state => {
   return {
-    AddSmurf: state.AddSmurf,
-    isFetching: state.isFetching,
-    error: state.error
+    // AddSmurf: state.AddSmurf,
+    // isFetching: state.isFetching,
+    // error: state.error
   };
 };
 
